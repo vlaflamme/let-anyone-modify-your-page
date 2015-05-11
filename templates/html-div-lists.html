@@ -1,0 +1,55 @@
+
+{% extends "html-toppage.html" %}
+
+{% block content %}
+
+<form>
+	<h2>Search for Help</h2>
+	<input type="text" name="word">
+	{% if items %}
+		{% for item in items %}
+			<input type="hidden" name="word" value="{{item}}">
+		{% endfor %}
+	{% endif %}
+	<button>Enter key word to search</button>
+
+	{% if items %}
+		<br>
+		<br>
+
+		<h3>Search List</h3>
+		<ul>
+			{% for item in items %}
+				<li>{{ item }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+
+	<br>
+	<br>
+
+	{% for lesson in lessons %}
+
+	<div class="lesson">
+		<h1> {{lesson}}</h1>
+
+		{%for sub in sub_topic%}
+
+		<div class="sub-topic">
+			<h2> {{ sub_topic }}</h2>
+				<ul>
+		    		{%for item in sub_topic_list%}
+		    			<li>{{ item }}</li>
+		    		{%endfor%}
+		    	</ul>
+		</div>
+		
+		{%endfor%}
+
+	</div>
+
+	{% endfor %}
+
+</form>
+
+{% endblock %}
